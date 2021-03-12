@@ -17,9 +17,8 @@ import torch.utils.data as Data
 from reader import *
 
 logger = get_logger("Train sentence sequences Recurrent Convolutional model (LSTM stack over CNN)")
-np.random.seed(100)
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 
 def main():
