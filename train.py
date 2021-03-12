@@ -86,7 +86,7 @@ def main():
         dev_loader = Data.DataLoader(dataset=dev_data, batch_size=batch_size, shuffle=True, num_workers=3)
         test_loader = Data.DataLoader(dataset=test_data, batch_size=batch_size, shuffle=True, num_workers=3)
 
-        model = HierAttNet(100,100,10,1,embed_table,max_sentnum,max_sentlen)
+        model = HierAttNet(100,100,10,embed_table,max_sentnum,max_sentlen)
         model.word_att_net.lookup.weight.requires_grad = True
 
         if torch.cuda.is_available():
