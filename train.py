@@ -36,7 +36,7 @@ def main():
 
     # parser.add_argument('--project_hiddensize', type=int, default=100, help='num of units in projection layer')
     parser.add_argument('--optimizer', choices=['sgd', 'momentum', 'nesterov', 'adagrad', 'rmsprop'], help='updating algorithm', default='sgd')
-    parser.add_argument('--learning_rate', type=float, default=0.1, help='Initial learning rate')
+    parser.add_argument('--learning_rate', type=float, default=0.001, help='Initial learning rate')
     parser.add_argument('--dropout', type=float, default=0.5, help='Dropout rate for layers')
 
     parser.add_argument('--datapath',type =str,default='data/fold_')  # "data/word-level/*.train"
@@ -93,7 +93,7 @@ def main():
             model.cuda()
         print(model)
         criterion = nn.MSELoss()
-        optimizer = torch.optim.RMSprop(filter(lambda p: p.requires_grad, model.parameters()), lr=0.001, alpha=0.9)
+        optimizer = torch.optim.RMSprop(filter(lambda p: p.requires_grad, model.parameters()), lr=args.learning_rate, alpha=0.9)
         best_loss = 1e5
         best_epoch = 0
         model.train()
