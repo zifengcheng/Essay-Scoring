@@ -5,7 +5,7 @@ from word_att_model import WordAttNet
 
 
 class HierAttNet(nn.Module):
-    def __init__(self, word_hidden_size, sent_hidden_size, batch_size, num_classes,embed_table,
+    def __init__(self, word_hidden_size, sent_hidden_size, batch_size, embed_table,
                  max_sent_length, max_word_length):
         super(HierAttNet, self).__init__()
         self.batch_size = batch_size
@@ -14,7 +14,7 @@ class HierAttNet(nn.Module):
         self.max_sent_length = max_sent_length
         self.max_word_length = max_word_length
         self.word_att_net = WordAttNet(embed_table,word_hidden_size)
-        self.sent_att_net = SentAttNet(sent_hidden_size, word_hidden_size, num_classes)
+        self.sent_att_net = SentAttNet(sent_hidden_size, word_hidden_size)
         self._init_hidden_state()
 
     def _init_hidden_state(self, last_batch_size=None):
