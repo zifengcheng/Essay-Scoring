@@ -139,7 +139,7 @@ def main():
             print(
             "dev  Epoch: {}/{}, Iteration: {}/{}, loss : {},quadratic_weighted_kappa: {}, pearson: {}, spearman: {}".format(
                 epoch + 1,
-                20,
+                args.num_epochs,
                 iter + 1,
                 num_iter_per_epoch, sum(loss_ls),
                 q1, p1, s1))
@@ -168,7 +168,7 @@ def main():
 
             print(
             "test  Epoch: {}/{}, Iteration: {}/{}, loss: {},quadratic_weighted_kappa: {}, pearson: {}, spearman: {}".format(
-                epoch + 1,20,iter + 1,num_iter_per_epoch, sum(loss_ls),q2, s2, p2))
+                epoch + 1,args.num_epochs,iter + 1,num_iter_per_epoch, sum(loss_ls),q2, s2, p2))
 
             if q1 > p:
                 p = q1
