@@ -9,3 +9,5 @@ Our version is:
 
 # Training
 python train.py --oov embedding --embedding glove --embedding_dict glove.6B.50d.txt --embedding_dim 50 --datapath data/fold_ --prompt_id 1
+
+Note that you should download glove.6B.50d.txt.
