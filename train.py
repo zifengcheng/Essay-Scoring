@@ -28,7 +28,7 @@ def main():
     parser.add_argument('--embedding_dict', type=str, default=None, help='Pretrained embedding path')
     parser.add_argument('--embedding_dim', type=int, default=64, help='Only useful when embedding is randomly initialised')
 
-    parser.add_argument('--num_epochs', type=int, default=20, help='number of epochs for training')
+    parser.add_argument('--num_epochs', type=int, default=50, help='number of epochs for training')
     parser.add_argument('--batch_size', type=int, default=10, help='Number of texts in each batch')
     parser.add_argument("-v", "--vocab-size", dest="vocab_size", type=int, metavar='<int>', default=4000, help="Vocab size (default=4000)")
 
@@ -99,7 +99,7 @@ def main():
         model.train()
         p = 0
         num_iter_per_epoch = len(train_loader)
-        for epoch in range(30):
+        for epoch in range(args.num_epochs):
             print("begin train")
             for iter, (feature, label) in enumerate(train_loader):
                 #print(len_train,label)
