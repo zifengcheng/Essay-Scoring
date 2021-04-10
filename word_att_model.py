@@ -1,10 +1,6 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-# from src.utils import matrix_mul, element_wise_mul
-import pandas as pd
-import numpy as np
-import csv
 
 class WordAttNet(nn.Module):
     def __init__(self, dict,hidden_size=100):
@@ -19,13 +15,12 @@ class WordAttNet(nn.Module):
 
     def forward(self, input):
         output = self.lookup(input)
-        #print(input.shape)
         output = self.dropout(output)
         output = output.permute(1,2,0)
         f_output = self.conv1(output.float()) # shape : batch * hidden_size * seq_len
         f_output = f_output.permute(2,0,1)   # shape : seq_len * batch * hidden_size
 
-        weight = F.tanh(self.fc1(f_output))
+        weight = torch.tanh(self.fc1(f_output))
         weight = self.fc2(weight)
         weight = F.softmax(weight,0)
         weight = weight * f_output
