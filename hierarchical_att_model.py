@@ -30,12 +30,10 @@ class HierAttNet(nn.Module):
 
     def forward(self, input):
 
-        output_list = []
+        output_list = torch.empty(0,).cuda()
         input = input.permute(1, 0, 2)
         for i in input:
             output = self.word_att_net(i.permute(1, 0))
-            output_list.append(output)
-        output = torch.cat(output_list, 0)
-        output= self.sent_att_net(output)
-
+            output_list = torch.cat((output_list,output))
+        output= self.sent_att_net(output_list)
         return output
