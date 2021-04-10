@@ -1,7 +1,6 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-# from src.utils import matrix_mul, element_wise_mul
 
 class SentAttNet(nn.Module):
     def __init__(self, sent_hidden_size=100, word_hidden_size=100):
@@ -13,12 +12,12 @@ class SentAttNet(nn.Module):
 
     def forward(self, input):
         f_output, _ = self.LSTM(input)
-        weight = F.tanh(self.fc1(f_output))
+        weight = torch.tanh(self.fc1(f_output))
         weight = self.fc2(weight)
         weight = F.softmax(weight,0)
         weight = weight * f_output
         output = weight.sum(0)
-        output = F.sigmoid(self.fc(output))
+        output = torch.sigmoid(self.fc(output))
         return output
 
 
