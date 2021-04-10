@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import numpy as np
 
 class WordAttNet(nn.Module):
     def __init__(self, dict,hidden_size=100):
